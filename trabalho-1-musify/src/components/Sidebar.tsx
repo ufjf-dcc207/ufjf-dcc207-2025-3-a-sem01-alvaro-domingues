@@ -1,6 +1,6 @@
 // src/components/Sidebar.tsx
 import React from 'react';
-import { menuItems, playlists } from '../data';
+import { menuItems, playlists } from '../data.ts';
 import { PlaylistItem } from '../types';
 // Ícones populares do React Icons (precisam ser instalados)
 import { IoHome, IoSearch, IoLibrary } from 'react-icons/io5'; 
