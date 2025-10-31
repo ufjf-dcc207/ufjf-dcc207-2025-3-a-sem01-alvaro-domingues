@@ -1,42 +1,248 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* src/App.css ou similar */
+
+/* Variáveis de Cores (Spotify Style) */
+:root {
+    --color-background-dark: #121212;
+    --color-sidebar-dark: #000000;
+    --color-player-dark: #181818;
+    --color-primary-green: #1db954; /* O verde famoso do Spotify */
+    --color-text-white: #ffffff;
+    --color-text-light: #b3b3b3;
+    --color-text-gray: #535353;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Estrutura Principal */
+.spotify-layout {
+    display: grid;
+    /* Sidebar (240px) | Conteúdo Principal | Player (embaixo) */
+    grid-template-columns: 240px 1fr;
+    grid-template-rows: 1fr 90px;
+    grid-template-areas: 
+        "sidebar main"
+        "player player";
+    height: 100vh;
+    background-color: var(--color-background-dark);
+    font-family: 'Arial', sans-serif;
+    color: var(--color-text-white);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.main-content {
+    grid-area: main;
+    padding: 24px;
+    overflow-y: auto;
+    /* Estilo de scrollbar escuro (pode precisar de prefixos para navegadores) */
 }
 
-.card {
-  padding: 2em;
+/* --- SIDEBAR (Componente Sidebar) --- */
+.sidebar {
+    grid-area: sidebar;
+    background-color: var(--color-sidebar-dark);
+    padding: 24px 12px;
+    display: flex;
+    flex-direction: column;
 }
 
-.read-the-docs {
-  color: #888;
+.sidebar-logo {
+    margin-bottom: 24px;
+}
+
+.logo-text {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-text-white);
+}
+
+.sidebar-nav, .sidebar-library {
+    margin-bottom: 15px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 8px 12px;
+    color: var(--color-text-light);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.nav-link:hover {
+    color: var(--color-text-white);
+    background-color: #242424;
+}
+
+/* Estilo para links ativos (simulado) */
+.nav-link.active {
+    color: var(--color-text-white);
+}
+
+.sidebar-library {
+    margin-top: 20px;
+    /* Biblioteca de playlists */
+}
+
+.playlist-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.playlist-item a {
+    display: block;
+    padding: 5px 12px;
+    color: var(--color-text-light);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+}
+
+.playlist-item a:hover {
+    color: var(--color-text-white);
+}
+
+.library-header {
+    margin-bottom: 5px;
+    color: var(--color-text-light);
+}
+
+/* Botão de criar playlist */
+.create-playlist-btn {
+    background: none;
+    border: none;
+    color: var(--color-text-light);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    margin-left: auto; /* Para alinhar à direita se necessário */
+    display: block;
+    transition: color 0.2s, background-color 0.2s;
+}
+
+.create-playlist-btn:hover {
+    color: var(--color-text-white);
+    background-color: #242424;
+}
+
+
+/* --- MUSIC PLAYER (Componente MusicPlayer) --- */
+.music-player {
+    grid-area: player;
+    background-color: var(--color-player-dark);
+    border-top: 1px solid #282828;
+    padding: 0 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.track-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 30%;
+}
+
+.track-cover {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 4px; /* Cantos arredondados */
+}
+
+.track-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.track-title {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--color-text-white);
+}
+
+.track-artist {
+    font-size: 0.75rem;
+    color: var(--color-text-light);
+}
+
+.player-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+}
+
+.controls-buttons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.control-icon, .volume-icon {
+    color: var(--color-text-light);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.control-icon:hover {
+    color: var(--color-text-white);
+}
+
+.play-button {
+    color: var(--color-text-white);
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+.play-button:hover {
+    transform: scale(1.1);
+}
+
+/* Barra de Progresso Comum (Base e Preenchimento) */
+.progress-bar-container, .volume-slider {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 8px;
+}
+
+.progress-bar, .volume-slider {
+    height: 4px;
+    background-color: #404040;
+    border-radius: 2px;
+    cursor: pointer;
+    flex-grow: 1; /* Preenche o espaço */
+    position: relative;
+}
+
+.progress-filled, .volume-filled {
+    height: 100%;
+    background-color: var(--color-text-white); /* Cor Branca para o progresso */
+    border-radius: 2px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: background-color 0.2s;
+}
+
+.progress-bar:hover .progress-filled, .volume-slider:hover .volume-filled {
+    background-color: var(--color-primary-green); /* Verde no hover */
+}
+
+.time-display {
+    font-size: 0.7rem;
+    color: var(--color-text-light);
+}
+
+/* Volume Control */
+.volume-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 30%;
+    justify-content: flex-end;
 }

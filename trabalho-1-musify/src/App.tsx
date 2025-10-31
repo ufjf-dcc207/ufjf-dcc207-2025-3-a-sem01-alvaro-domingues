@@ -1,6 +1,6 @@
 
-//import Sidebar from './components/Sidebar'; // Crie este componente
-//import MusicPlayer from './components/MusicPlayer'; // Crie este componente
+//import Sidebar from './components/Sidebar';
+//import MusicPlayer from './components/MusicPlayer'; 
 import HomeView from './views/HomeView';
 
 const App = () => {
