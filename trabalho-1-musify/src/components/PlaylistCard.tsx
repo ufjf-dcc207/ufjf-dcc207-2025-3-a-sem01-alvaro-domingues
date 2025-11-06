@@ -1,6 +1,7 @@
 
 interface PlaylistProps {
   playlist: {
+    id: string;
     nome: string;
     capaUrl: string;
     descricao: string;

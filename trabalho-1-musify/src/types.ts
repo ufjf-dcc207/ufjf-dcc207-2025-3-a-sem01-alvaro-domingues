@@ -14,7 +14,7 @@ export interface CurrentTrack {
     capaUrl: string;
 }
 
-// Tipagem para as props dos Cards (já usamos antes)
+// Tipagem para as props dos Cards 
 export interface PlaylistProps {
   playlist: PlaylistItem;
 }

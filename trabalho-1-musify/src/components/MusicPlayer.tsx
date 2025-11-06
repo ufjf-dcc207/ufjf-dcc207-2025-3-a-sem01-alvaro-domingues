@@ -1,6 +1,6 @@
 // src/components/MusicPlayer.tsx
 import React from 'react';
-import { currentTrack } from '../data.ts';
+import { currentTrack } from '../data';
 import { 
     IoPlaySkipBackSharp, 
     IoPlaySkipForwardSharp, 

@@ -1,4 +1,4 @@
-
+import './App.css';
 import Sidebar from './components/Sidebar';
 import MusicPlayer from './components/MusicPlayer'; 
 import HomeView from './views/HomeView';
